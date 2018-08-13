@@ -35,7 +35,10 @@ router.get('/', function(req, res, next) {
 
     secondImage.scaleToFit(128, 128);
 
-    firstImage.composite( secondImage, 192, 192);
+    let x = (512 - secondImage.bitmap.width)/2;
+    let y = (512 - secondImage.bitmap.height)/2
+
+    firstImage.composite( secondImage, x, y);
 
     firstImage.getBuffer(Jimp.MIME_PNG, function (err, buffer) {
       res.writeHead(200, {
